@@ -25,7 +25,7 @@ int	*ini_data(t_data *data, char **argv)
 }
 
 
-int	*ini_philo(t_philo *philo, t_data *data)
+void	*ini_philo(t_philo *philo, t_data *data)
 {
 	int	i;
 	int	num_philo = data->num_philos;
@@ -34,16 +34,16 @@ int	*ini_philo(t_philo *philo, t_data *data)
 	if (!philo)
 	{
 		free(philo);
-		return (0);
+		return (NULL);
 	}
 	i = 0;
 	while(i <num_philo)
 	{
-		philo->id = i + 1;
-		philo->right_fork = &data->forks[i];
-		philo->left_fork = &data->forks[(i - 1 + data->num_philos) % data->num_philos];
-		philo->last_meal = 0;
+		philo[i].id = i + 1;
+		philo[i].right_fork = &data->forks[i];
+		philo[i].left_fork = &data->forks[(i - 1 + data->num_philos) % data->num_philos];
+		philo[i].last_meal = 0;
 		i++;
 	}
-	return 1;
+	return philo;
 }
