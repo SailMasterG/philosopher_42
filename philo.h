@@ -6,7 +6,7 @@
 /*   By: chguerr <chguerr@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/18 15:47:26 by chguerr           #+#    #+#             */
-/*   Updated: 2026/08/18 15:47:32 by chguerr          ###   ########.ch       */
+/*   Updated: 2026/08/18 15:49:51 by chguerr          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ typedef struct s_philo
 	t_data *data;
 }	t_philo;
 
-int		sini_data(t_data *data, char **argv);
-int		*ini_philo(t_philo *philo, t_data *data);
+int		ini_data(t_data *data, char **argv);
+void	*ini_philo(t_philo *philo, t_data *data);
 void	create_threads(t_philo *philo);
 void	*routine(void *arg);
 #endif
