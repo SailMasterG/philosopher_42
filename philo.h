@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   settings.json                                      :+:      :+:    :+:   */
+/*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chguerr <chguerr@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/18 14:52:33 by chguerr           #+#    #+#             */
-/*   Updated: 2026/08/18 15:15:49 by chguerr          ###   ########.ch       */
+/*   Created: 2026/08/18 15:47:26 by chguerr           #+#    #+#             */
+/*   Updated: 2026/08/18 15:47:32 by chguerr          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ typedef struct s_philo
 	t_data *data;
 }	t_philo;
 
-int	*ini_data(t_data *data, char **argv);
-int	*ini_philo(t_philo *philo, t_data *data);
+int		sini_data(t_data *data, char **argv);
+int		*ini_philo(t_philo *philo, t_data *data);
+void	create_threads(t_philo *philo);
+void	*routine(void *arg);
 #endif

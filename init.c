@@ -1,7 +1,26 @@
 #include "philo.h"
 
 
-int	*ini_data(t_data *data, char **argv)
+void create_threads(t_philo *philo)
+{
+	pthread_t	*thread;
+	int			i;
+	
+	i = 0;
+	while(i < philo->data->num_philos)
+	{
+		pthread_create(&thread[i], NULL, (void *)routine, &philo[i]);
+		i++;
+	}
+	i = 0;
+	while(i < philo->data->num_philos)
+	{
+		pthread_join(thread[i], NULL);
+		i++;
+	}
+}
+
+int	ini_data(t_data *data, char **argv)
 {
 	int	num_philos;
 	int	i;
@@ -32,10 +51,7 @@ void	*ini_philo(t_philo *philo, t_data *data)
 
 	philo = malloc(sizeof(t_philo) * data->num_philos);
 	if (!philo)
-	{
-		free(philo);
 		return (NULL);
-	}
 	i = 0;
 	while(i <num_philo)
 	{

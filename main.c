@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: chguerr <chguerr@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/18 15:25:20 by chguerr           #+#    #+#             */
-/*   Updated: 2026/08/18 15:25:55 by chguerr          ###   ########.ch       */
+/*   Created: 2026/08/18 15:46:41 by chguerr           #+#    #+#             */
+/*   Updated: 2026/08/18 15:47:13 by chguerr          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	main(int argc, char **argv)
 
 	if (argc < 4 || argc > 5)
 		return (1);
-
 	i = 0;
 	philo = NULL;
 	if(!ini_data(&data, argv))
@@ -28,10 +27,12 @@ int	main(int argc, char **argv)
 	philo = ini_philo(philo, &data);
 	if(!philo)
 		return 1;
+	create_threads(philo);
 	while (i < data.num_philos)
 	{
 		pthread_mutex_destroy(&data.forks[i]);
 		i++;
 	}
+	pthread_mutex_destroy(&data.print_log);
 	return (0);
 }
