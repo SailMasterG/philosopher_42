@@ -6,7 +6,7 @@ NAME = philo
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -pthread
 
-SRCS = main.c init.c 
+SRCS = main.c init.c routine.c
 #routine.c monitor.c utils.c
 OBJS = $(SRCS:%.c=%.o)
 
