@@ -1,0 +1,9 @@
+# Archivos objeto compilados (se regeneran con make)
+*.o
+
+# El ejecutable final del proyecto
+philo
+
+# Archivos de sistema operativo / editores (basura que no es tuya)
+.DS_Store
+*.swp
