@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: chguerr <chguerr@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/18 15:46:41 by chguerr           #+#    #+#             */
-/*   Updated: 2026/08/18 15:47:13 by chguerr          ###   ########.ch       */
+/*   Created: 2026/08/18 16:04:51 by chguerr           #+#    #+#             */
+/*   Updated: 2026/08/18 16:04:51 by chguerr          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 	philo = ini_philo(philo, &data);
 	if(!philo)
 		return 1;
-	create_threads(philo);
+	create_threads(philo, data.num_philos);
 	while (i < data.num_philos)
 	{
 		pthread_mutex_destroy(&data.forks[i]);

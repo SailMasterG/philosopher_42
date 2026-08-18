@@ -1,19 +1,25 @@
 #include "philo.h"
 
 
-void create_threads(t_philo *philo)
+void create_threads(t_philo *philo, int num_philos)
 {
 	pthread_t	*thread;
 	int			i;
 	
+	thread = malloc(sizeof(pthread_t) * num_philos);
+	if(!thread)
+	{
+		//creo que tengo que liberar todo data.fork y philos.
+		return ;
+	}
 	i = 0;
-	while(i < philo->data->num_philos)
+	while(i < num_philos)
 	{
 		pthread_create(&thread[i], NULL, (void *)routine, &philo[i]);
 		i++;
 	}
 	i = 0;
-	while(i < philo->data->num_philos)
+	while(i < num_philos)
 	{
 		pthread_join(thread[i], NULL);
 		i++;
