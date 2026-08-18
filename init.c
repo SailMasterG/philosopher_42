@@ -65,6 +65,7 @@ void	*ini_philo(t_philo *philo, t_data *data)
 		philo[i].right_fork = &data->forks[i];
 		philo[i].left_fork = &data->forks[(i - 1 + data->num_philos) % data->num_philos];
 		philo[i].last_meal = 0;
+		philo[i].data = data;
 		i++;
 	}
 	return philo;
