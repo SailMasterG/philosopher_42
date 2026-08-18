@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: chguerr <chguerr@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/18 13:21:59 by chguerr           #+#    #+#             */
-/*   Updated: 2026/08/18 13:21:59 by chguerr          ###   ########.ch       */
+/*   Created: 2026/08/18 14:51:15 by chguerr           #+#    #+#             */
+/*   Updated: 2026/08/18 14:51:21 by chguerr          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_philo
 	unsigned long	last_meal;
 	pthread_mutex_t	*right_fork;
 	pthread_mutex_t	*left_fork;
+	t_data *data;
 }	t_philo;
 
 void	*ini_data(t_data *data, char **argv);

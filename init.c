@@ -1,7 +1,7 @@
 #include "philo.h"
 
 
-void	*ini_data(t_data *data, char **argv)
+int	*ini_data(t_data *data, char **argv)
 {
 	int	num_philos;
 	int	i;
@@ -13,7 +13,7 @@ void	*ini_data(t_data *data, char **argv)
 	num_philos = data->num_philos;
 	data->forks = malloc(sizeof(pthread_mutex_t) * num_philos);
 	if(!data->forks)
-		return NULL;
+		return 0;
 	i = 0;
 	while (i < num_philos)
 	{
@@ -21,11 +21,11 @@ void	*ini_data(t_data *data, char **argv)
 		i++;
 	}
 	pthread_mutex_init(&data->print_log, NULL);
-	return data;
+	return 1;
 }
 
 
-void	*ini_philo(t_philo *philo, t_data *data)
+int	*ini_philo(t_philo *philo, t_data *data)
 {
 	int	i;
 	int	num_philo = data->num_philos;
@@ -34,7 +34,7 @@ void	*ini_philo(t_philo *philo, t_data *data)
 	if (!philo)
 	{
 		free(philo);
-		return (NULL);
+		return (0);
 	}
 	i = 0;
 	while(i <num_philo)
@@ -45,5 +45,5 @@ void	*ini_philo(t_philo *philo, t_data *data)
 		philo->last_meal = 0;
 		i++;
 	}
-	return philo;
+	return 1;
 }
