@@ -1,6 +1,13 @@
 #include "philo.h"
 
-unsigned long get_time_ms()
+unsigned long current_time(t_philo *philo)
+{
+    unsigned long c_time;
+    c_time = (get_time_ms() - philo->data->start_time);
+    return c_time;
+}
+
+unsigned long get_time_ms(void)
 {
     struct timeval tv;
     unsigned long get_time;
