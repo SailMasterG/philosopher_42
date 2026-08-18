@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: chguerr <chguerr@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/18 16:04:51 by chguerr           #+#    #+#             */
-/*   Updated: 2026/08/18 16:04:51 by chguerr          ###   ########.ch       */
+/*   Created: 2026/08/18 19:36:56 by chguerr           #+#    #+#             */
+/*   Updated: 2026/08/18 19:37:16 by chguerr          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(int argc, char **argv)
 	t_data	data;
 	t_philo	*philo;
 	int		i;
-
+	
 	if (argc < 4 || argc > 5)
 		return (1);
 	i = 0;

@@ -31,6 +31,7 @@ int	ini_data(t_data *data, char **argv)
 	int	num_philos;
 	int	i;
 
+	data->start_time = get_time_ms();
 	data->time_to_die = atoi(argv[2]);
 	data->time_to_eat = atoi(argv[3]);
 	data->time_to_sleep = atoi(argv[4]);

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: chguerr <chguerr@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/18 18:22:19 by chguerr           #+#    #+#             */
-/*   Updated: 2026/08/18 18:22:19 by chguerr          ###   ########.ch       */
+/*   Created: 2026/08/18 19:45:28 by chguerr           #+#    #+#             */
+/*   Updated: 2026/08/18 19:45:38 by chguerr          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <pthread.h>
+# include <sys/time.h>
 
 typedef struct s_data
 {
 	int				num_philos;
 	int				num_times_to_eats;
+	unsigned long	start_time;
 	unsigned long	time_to_die;
 	unsigned long	time_to_eat;
 	unsigned long	time_to_sleep;
@@ -38,8 +40,9 @@ typedef struct s_philo
 	t_data *data;
 }	t_philo;
 
-int		ini_data(t_data *data, char **argv);
-void	*ini_philo(t_philo *philo, t_data *data);
-void	create_threads(t_philo *philo, int num_philos);
-void	*routine(void *arg);
+int				ini_data(t_data *data, char **argv);
+void			*ini_philo(t_philo *philo, t_data *data);
+void			create_threads(t_philo *philo, int num_philos);
+void			*routine(void *arg);
+unsigned long	get_time_ms();
 #endif
