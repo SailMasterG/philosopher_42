@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: chguerr <chguerr@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/19 23:27:27 by chguerr           #+#    #+#             */
-/*   Updated: 2026/08/19 23:27:41 by chguerr          ###   ########.ch       */
+/*   Created: 2026/08/19 23:46:34 by chguerr           #+#    #+#             */
+/*   Updated: 2026/08/19 23:46:34 by chguerr          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ typedef struct s_philo
 
 int				ini_data(t_data *data, char **argv);
 void			*ini_philo(t_philo *philo, t_data *data);
-void			*create_threads(t_philo *philo, int num_philos, pthread_t **dog_watch);
-void			join_threads(pthread_t **threads, t_philo *philo, pthread_t **dog_watch );
+void			*create_threads(t_philo *philo, int num_philos, pthread_t *dog_watch);
+void			join_threads(pthread_t *threads, t_philo *philo, pthread_t *dog_watch );
 void			*routine(void *arg);
 void			*monitor(void *arg);
 unsigned long	get_time_ms(void);

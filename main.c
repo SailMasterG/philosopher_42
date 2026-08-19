@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: chguerr <chguerr@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/19 23:34:01 by chguerr           #+#    #+#             */
-/*   Updated: 2026/08/19 23:34:12 by chguerr          ###   ########.ch       */
+/*   Created: 2026/08/19 23:46:23 by chguerr           #+#    #+#             */
+/*   Updated: 2026/08/19 23:46:23 by chguerr          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,13 @@ int	main(int argc, char **argv)
 		return (1);
 	i = 0;
 	philo = NULL;
-	dog_watch = NULL;
 	if(!ini_data(&data, argv))
 		return (1);
 	philo = ini_philo(philo, &data);
 	if(!philo)
 		return 1;
-	threads = create_threads(philo, data.num_philos, dog_watch);
-	join_threads(&threads, philo, &dog_watch);
+	threads = create_threads(philo, data.num_philos, &dog_watch);
+	join_threads(threads, philo, &dog_watch);
 	while (i < data.num_philos)
 	{
 		pthread_mutex_destroy(&data.forks[i]);

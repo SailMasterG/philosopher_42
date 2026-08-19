@@ -1,16 +1,14 @@
 #include "philo.h"
 
-void join_threads(pthread_t **threads, t_philo *philo, pthread_t *dog_watch )
+void join_threads(pthread_t *threads, t_philo *philo, pthread_t *dog_watch )
 {
-	pthread_t	*d_watch;
 	int i;
 
-	d_watch = dog_watch;
 	i = 0;
-	pthread_join(d_watch, NULL);
+	pthread_join(*dog_watch, NULL);
 	while(i < philo[i].data->num_philos)
 	{
-		pthread_join(&philo[i], NULL);
+		pthread_join(*threads, NULL);
 		i++;
 	}
 }
@@ -18,17 +16,15 @@ void join_threads(pthread_t **threads, t_philo *philo, pthread_t *dog_watch )
 void *create_threads(t_philo *philo, int num_philos, pthread_t *dog_watch)
 {
 	pthread_t	*thread;
-	pthread_t	*d_watch;
 	int			i;
 
-	d_watch = dog_watch;
 	thread = malloc(sizeof(pthread_t) * num_philos);
 	if(!thread)
 	{
 		//creo que tengo que liberar todo data.fork y philos.
-		return ;
+		return NULL ;
 	}
-	pthread_create(&d_watch, NULL,(void *)monitor, philo);	
+	pthread_create(dog_watch, NULL,(void *)monitor, philo);	
 	i = 0;
 	while(i < num_philos)
 	{
