@@ -39,12 +39,12 @@ int	ini_data(t_data *data, char **argv)
 	int	num_philos;
 	int	i;
 
-	data->start_time = get_time_ms();
 	data->time_to_die = atoi(argv[2]);
 	data->time_to_eat = atoi(argv[3]);
 	data->time_to_sleep = atoi(argv[4]);
 	data->num_philos = atoi(argv[1]);
 	data->someone_died = 0;
+	data->start_time = get_time_ms();
 	num_philos = data->num_philos;
 	data->forks = malloc(sizeof(pthread_mutex_t) * num_philos);
 	if(!data->forks)
