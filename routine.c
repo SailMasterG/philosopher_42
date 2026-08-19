@@ -30,13 +30,13 @@ void	*monitor(void *arg)
 		i = 0;
 		while(i < philo->data->num_philos)
 		{	pthread_mutex_lock(&philo->last_meal_mutex);
-			if(current_time(&philo[i]) - philo->last_meal > philo->data->time_to_die)
+			if(current_time(&philo[i]) - philo[i].last_meal > philo->data->time_to_die)
 			{	
 			pthread_mutex_unlock(&philo->last_meal_mutex);
 			print_log(&philo[i],"Has die!!...");
-			i++;
-			}
-		break;
+			break;
+		}
+		i++;
 		}
 	}
 	//Limpieza de todo.
