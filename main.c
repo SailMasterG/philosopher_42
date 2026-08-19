@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: chguerr <chguerr@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/19 23:52:03 by chguerr           #+#    #+#             */
-/*   Updated: 2026/08/19 23:52:06 by chguerr          ###   ########.ch       */
+/*   Created: 2026/08/20 00:19:50 by chguerr           #+#    #+#             */
+/*   Updated: 2026/08/20 00:23:58 by chguerr          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,7 @@ int	main(int argc, char **argv)
 	join_threads(threads, philo, &dog_watch);
 	mutexes_destroy(philo, &data);
 	free(philo);
+	free(data.forks);
+	free(threads);
 	return (0);
 }

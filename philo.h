@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: chguerr <chguerr@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/19 23:50:52 by chguerr           #+#    #+#             */
-/*   Updated: 2026/08/19 23:50:57 by chguerr          ###   ########.ch       */
+/*   Created: 2026/08/20 00:10:54 by chguerr           #+#    #+#             */
+/*   Updated: 2026/08/20 00:11:32 by chguerr          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,12 @@ typedef struct s_data
 {
 	int				num_philos;
 	int				num_times_to_eats;
+	int				someone_died;
 	unsigned long	start_time;
 	unsigned long	time_to_die;
 	unsigned long	time_to_eat;
 	unsigned long	time_to_sleep;
+	pthread_mutex_t	death_mutex;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_log;
 }	t_data;

@@ -48,7 +48,11 @@ void	*monitor(void *arg)
 			i++;
 		}
 		if (one_die)
-			break;
+		{
+			pthread_mutex_lock(&philo->data->death_mutex);
+			philo->data->someone_died = 1;
+			pthread_mutex_unlock(&philo->data->death_mutex);
+		}
 	}
 	return NULL;
 }
@@ -60,6 +64,12 @@ void *routine(void *arg)
 	philo = arg;
 	while (1)
 	{
+		pthread_mutex_lock(&philo->data->death_mutex);
+		if(philo->data->someone_died)
+		{
+			pthread_mutex_unlock(&philo->data->death_mutex);
+			return NULL;
+		}
 		print_log(philo,"is thinking" );
 		take_forks(philo);
 		pthread_mutex_lock(&philo->last_meal_mutex);

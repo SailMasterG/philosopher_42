@@ -44,6 +44,7 @@ int	ini_data(t_data *data, char **argv)
 	data->time_to_eat = atoi(argv[3]);
 	data->time_to_sleep = atoi(argv[4]);
 	data->num_philos = atoi(argv[1]);
+	data->someone_died = 0;
 	num_philos = data->num_philos;
 	data->forks = malloc(sizeof(pthread_mutex_t) * num_philos);
 	if(!data->forks)
@@ -54,6 +55,7 @@ int	ini_data(t_data *data, char **argv)
 		pthread_mutex_init(&data->forks[i], NULL);
 		i++;
 	}
+	pthread_mutex_init(&data->death_mutex, NULL);
 	pthread_mutex_init(&data->print_log, NULL);
 	return 1;
 }
