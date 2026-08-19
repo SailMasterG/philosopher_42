@@ -33,6 +33,11 @@ void *routine(void *arg)
 		pthread_mutex_lock(&philo->last_meal_mutex);
 		philo->last_meal = current_time(philo);
 		pthread_mutex_unlock(&philo->last_meal_mutex);
+		if(should_stop(philo))
+		{
+			leave_forks(philo);
+			return NULL;
+		}
 		print_log(philo, "has taken a fork");
 		print_log(philo, "is eating");
 		usleep(philo->data->time_to_eat * 1000);
