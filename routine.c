@@ -19,6 +19,8 @@ void leave_forks(t_philo *philo)
 	pthread_mutex_unlock(philo->left_fork);
 }
 
+
+
 void *routine(void *arg)
 {
 	t_philo *philo;
@@ -26,21 +28,16 @@ void *routine(void *arg)
 	philo = arg;
 	while (1)
 	{
-		pthread_mutex_lock(&philo->data->print_log);
-		printf("%lu %d is thinking\n", current_time(philo), philo->id);
-		pthread_mutex_unlock(&philo->data->print_log);
+		print_log(philo,"is thinking" );
 		take_forks(philo);
-		pthread_mutex_lock(&philo->data->print_log);
-		printf("%lu %d has taken a fork\n", current_time(philo), philo->id);
-		pthread_mutex_unlock(&philo->data->print_log);
-		pthread_mutex_lock(&philo->data->print_log);
-		printf("%lu %d is eating\n",current_time(philo), philo->id);
-		pthread_mutex_unlock(&philo->data->print_log);
+		pthread_mutex_lock(&philo->last_meal_mutex);
+		philo->last_meal = current_time(philo);
+		pthread_mutex_unlock(&philo->last_meal_mutex);
+		print_log(philo, "has taken a fork");
+		print_log(philo, "is eating");
 		usleep(philo->data->time_to_eat * 1000);
 		leave_forks(philo);
-		pthread_mutex_lock(&philo->data->print_log);
-		printf("%lu %d is sleeping\n",current_time(philo), philo->id);
-		pthread_mutex_unlock(&philo->data->print_log);
+		print_log(philo, "is sleeping");
 		usleep(philo->data->time_to_sleep * 1000);
 	}
 	return NULL;

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: chguerr <chguerr@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/18 19:36:56 by chguerr           #+#    #+#             */
-/*   Updated: 2026/08/18 19:37:16 by chguerr          ###   ########.ch       */
+/*   Created: 2026/08/19 20:06:03 by chguerr           #+#    #+#             */
+/*   Updated: 2026/08/19 20:08:40 by chguerr          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ int	main(int argc, char **argv)
 	while (i < data.num_philos)
 	{
 		pthread_mutex_destroy(&data.forks[i]);
+		pthread_mutex_destroy(&philo[i].last_meal_mutex);
 		i++;
 	}
+	
 	pthread_mutex_destroy(&data.print_log);
 	return (0);
 }
