@@ -37,7 +37,10 @@ void *routine(void *arg)
 		print_log(philo, "is eating");
 		usleep(philo->data->time_to_eat * 1000);
 		if(should_stop(philo))
+		{
+			leave_forks(philo);
 			return NULL;
+		}
 		leave_forks(philo);
 		print_log(philo, "is sleeping");
 		usleep(philo->data->time_to_sleep * 1000);
