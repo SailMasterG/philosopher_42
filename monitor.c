@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: chguerr <chguerr@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/20 00:39:36 by chguerr           #+#    #+#             */
-/*   Updated: 2026/08/20 00:40:01 by chguerr          ###   ########.ch       */
+/*   Created: 2026/08/20 01:24:28 by chguerr           #+#    #+#             */
+/*   Updated: 2026/08/20 01:24:31 by chguerr          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	*monitor(void *arg)
 	philo = arg;
 	while(1)
 	{
+        sleep(500);
 		i = 0;
 		while(i < philo->data->num_philos)
 		{	
