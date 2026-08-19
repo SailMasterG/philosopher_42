@@ -6,7 +6,7 @@ void join_threads(pthread_t *threads, t_philo *philo, pthread_t *dog_watch )
 
 	i = 0;
 	pthread_join(*dog_watch, NULL);
-	while(i < philo[i].data->num_philos)
+	while(i < philo->data->num_philos)
 	{
 		pthread_join(threads[i], NULL);
 		i++;
