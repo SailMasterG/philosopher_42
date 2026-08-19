@@ -17,6 +17,19 @@ unsigned long	get_time_ms(void)
 	return(get_time);
 }
 
+void mutexes_destroy(t_philo *philo, t_data *data)
+{
+	int i;
+
+	i = 0;
+	while (i < data->num_philos)
+	{
+		pthread_mutex_destroy(&data->forks[i]);
+		pthread_mutex_destroy(&philo[i].last_meal_mutex);
+		i++;
+	}
+	pthread_mutex_destroy(&data->print_log);
+}
 void	print_log(t_philo *philo, char *message)
 {
 	pthread_mutex_lock(&philo->data->print_log);
