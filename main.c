@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: chguerr <chguerr@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/19 23:50:03 by chguerr           #+#    #+#             */
-/*   Updated: 2026/08/19 23:50:34 by chguerr          ###   ########.ch       */
+/*   Created: 2026/08/19 23:52:03 by chguerr           #+#    #+#             */
+/*   Updated: 2026/08/19 23:52:06 by chguerr          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,8 @@ int	main(int argc, char **argv)
 	pthread_t	dog_watch;
 	pthread_t	*threads;
 
-	int			i;
-	
 	if (argc < 4 || argc > 5)
 		return (1);
-	i = 0;
 	philo = NULL;
 	if(!ini_data(&data, argv))
 		return (1);
