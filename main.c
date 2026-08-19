@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: chguerr <chguerr@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/19 20:06:03 by chguerr           #+#    #+#             */
-/*   Updated: 2026/08/19 20:08:40 by chguerr          ###   ########.ch       */
+/*   Created: 2026/08/19 20:53:07 by chguerr           #+#    #+#             */
+/*   Updated: 2026/08/19 20:53:40 by chguerr          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,16 @@ int	main(int argc, char **argv)
 	if(!philo)
 		return 1;
 	create_threads(philo, data.num_philos);
+	pthread_t dog_watch;
+	pthread_create(&dog_watch, NULL,(void *)monitor, philo);
+	pthread_join(dog_watch, NULL);
 	while (i < data.num_philos)
 	{
 		pthread_mutex_destroy(&data.forks[i]);
 		pthread_mutex_destroy(&philo[i].last_meal_mutex);
 		i++;
 	}
-	
 	pthread_mutex_destroy(&data.print_log);
+	free(philo);
 	return (0);
 }

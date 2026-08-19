@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: chguerr <chguerr@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/19 20:16:39 by chguerr           #+#    #+#             */
-/*   Updated: 2026/08/19 20:16:39 by chguerr          ###   ########.ch       */
+/*   Created: 2026/08/19 20:51:52 by chguerr           #+#    #+#             */
+/*   Updated: 2026/08/19 20:51:52 by chguerr          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int				ini_data(t_data *data, char **argv);
 void			*ini_philo(t_philo *philo, t_data *data);
 void			create_threads(t_philo *philo, int num_philos);
 void			*routine(void *arg);
+void			*monitor(void *arg);
 unsigned long	get_time_ms(void);
 unsigned long	current_time(t_philo *philo);
 void			print_log(t_philo *philo, char *message);
