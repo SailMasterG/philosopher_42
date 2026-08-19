@@ -21,9 +21,9 @@ void leave_forks(t_philo *philo)
 static int is_dead(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->last_meal_mutex);
-	if(current_time(&philo) - philo->last_meal > philo->data->time_to_die)
+	if(current_time(philo) - philo->last_meal > philo->data->time_to_die)
 	{	
-		print_log(&philo,"Has die!!...");
+		print_log(philo,"Has die!!...");
 		pthread_mutex_unlock(&philo->last_meal_mutex);
 	return (1);
 	}
@@ -42,7 +42,7 @@ void	*monitor(void *arg)
 		i = 0;
 		while(i < philo->data->num_philos)
 		{	
-			one_die = is_dead(is_dead(&philo[i]));
+			one_die = is_dead(&philo[i]);
 			if(one_die)
 				break;
 			i++;
