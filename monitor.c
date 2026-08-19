@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: chguerr <chguerr@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/20 00:33:41 by chguerr           #+#    #+#             */
-/*   Updated: 2026/08/20 00:34:14 by chguerr          ###   ########.ch       */
+/*   Created: 2026/08/20 00:39:36 by chguerr           #+#    #+#             */
+/*   Updated: 2026/08/20 00:40:01 by chguerr          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int should_stop(t_philo *philo)
 			pthread_mutex_unlock(&philo->data->death_mutex);
 			return 1;
 		}
+    pthread_mutex_unlock(&philo->data->death_mutex);
     return (0);
 }
 
