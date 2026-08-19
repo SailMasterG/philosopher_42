@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: chguerr <chguerr@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/18 19:54:48 by chguerr           #+#    #+#             */
-/*   Updated: 2026/08/18 19:54:48 by chguerr          ###   ########.ch       */
+/*   Created: 2026/08/19 20:04:19 by chguerr           #+#    #+#             */
+/*   Updated: 2026/08/19 20:04:45 by chguerr          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_philo
 {
 	int				id;
 	unsigned long	last_meal;
+	pthread_mutex_t	last_meal_mutex;
 	pthread_mutex_t	*right_fork;
 	pthread_mutex_t	*left_fork;
 	t_data *data;
@@ -46,4 +47,5 @@ void			create_threads(t_philo *philo, int num_philos);
 void			*routine(void *arg);
 unsigned long	get_time_ms(void);
 unsigned long	current_time(t_philo *philo);
+
 #endif
