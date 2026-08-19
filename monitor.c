@@ -6,7 +6,7 @@
 /*   By: chguerr <chguerr@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 01:24:28 by chguerr           #+#    #+#             */
-/*   Updated: 2026/08/20 01:33:10 by chguerr          ###   ########.ch       */
+/*   Updated: 2026/08/20 01:46:42 by chguerr          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	*monitor(void *arg)
 	philo = arg;
 	while(1)
 	{
-        usleep(100 * 1000);
+        usleep(1 * 1000);
 		i = 0;
 		while(i < philo->data->num_philos)
 		{	

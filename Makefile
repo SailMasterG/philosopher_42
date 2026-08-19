@@ -4,7 +4,7 @@ RESET = \033[0m
 NAME = philo
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -pthread
+CFLAGS = -Wall -Werror -Wextra -pthread -fsanitize=thread
 
 SRCS = main.c init.c routine.c utils.c  monitor.c
 #routine.c monitor.c utils.c
