@@ -6,7 +6,7 @@
 /*   By: chguerre <chguerre@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 12:16:44 by chguerre          #+#    #+#             */
-/*   Updated: 2026/08/20 14:43:57 by chguerre         ###   ########.fr       */
+/*   Updated: 2026/08/20 15:33:30 by chguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	routine_eat(t_philo *philo)
 		return ;
 	print_log(philo, "has taken a fork");
 	print_log(philo, "is eating");
-	usleep(philo->data->time_to_eat * 1000);
+	ft_usleep(philo->data->time_to_eat, philo);
 	if (routine_should_stop(philo))
 		return ;
 	leave_forks(philo);
@@ -86,7 +86,7 @@ void	*routine(void *arg)
 				return (NULL);
 		}
 		print_log(philo, "is sleeping");
-		usleep(philo->data->time_to_sleep * 1000);
+		ft_usleep(philo->data->time_to_sleep, philo);
 		if (should_stop(philo))
 			return (NULL);
 	}

@@ -50,6 +50,7 @@ int				should_stop(t_philo *philo);
 void			*ini_philo(t_philo *philo, t_data *data);
 void			*create_threads(t_philo *philo, int num_philos, pthread_t *dog_watch);
 void			join_threads(pthread_t *threads, t_philo *philo, pthread_t *dog_watch );
+void			ft_usleep(unsigned long time_in_ms, t_philo *philo);
 void			mutexes_destroy(t_philo *philo, t_data *data);
 void			*routine(void *arg);
 void			*monitor(void *arg);

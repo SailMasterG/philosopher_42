@@ -6,7 +6,7 @@
 /*   By: chguerre <chguerre@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 01:24:28 by chguerr           #+#    #+#             */
-/*   Updated: 2026/08/20 12:29:26 by chguerre         ###   ########.fr       */
+/*   Updated: 2026/08/20 15:33:52 by chguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	*monitor(void *arg)
 	philo = arg;
 	while (1)
 	{
-		usleep(10 * 1000);
+		ft_usleep(10, philo);
 		i = 0;
 		while (i < philo->data->num_philos)
 		{
