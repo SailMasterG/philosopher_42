@@ -6,7 +6,7 @@
 /*   By: chguerre <chguerre@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 12:16:44 by chguerre          #+#    #+#             */
-/*   Updated: 2026/08/20 13:40:39 by chguerre         ###   ########.fr       */
+/*   Updated: 2026/08/20 13:57:30 by chguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ void	*routine(void *arg)
 	philo = arg;
 	while (1)
 	{
-		sleep(100);
 		if (should_stop(philo))
 			return (NULL);
 		print_log(philo, "is thinking" );
