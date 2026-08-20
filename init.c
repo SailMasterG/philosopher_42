@@ -24,7 +24,7 @@ void *create_threads(t_philo *philo, int num_philos, pthread_t *dog_watch)
 		//creo que tengo que liberar todo data.fork y philos.
 		return NULL ;
 	}
-	pthread_create(dog_watch, NULL,(void *)monitor, philo);	
+	pthread_create(dog_watch, NULL,(void *)monitor, philo);
 	i = 0;
 	while(i < num_philos)
 	{
@@ -77,6 +77,8 @@ void	*ini_philo(t_philo *philo, t_data *data)
 		philo[i].left_fork = &data->forks[(i - 1 + data->num_philos) % data->num_philos];
 		philo[i].last_meal = 0;
 		philo[i].data = data;
+		philo[i].times_eaten = 0;
+		philo[i].is_eating = 0;
 		pthread_mutex_init(&philo[i].last_meal_mutex, NULL);
 		i++;
 	}

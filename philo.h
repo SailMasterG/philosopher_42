@@ -36,6 +36,8 @@ typedef struct s_data
 typedef struct s_philo
 {
 	int				id;
+	int			times_eaten;
+	int 		is_eating;
 	unsigned long	last_meal;
 	pthread_mutex_t	last_meal_mutex;
 	pthread_mutex_t	*right_fork;
