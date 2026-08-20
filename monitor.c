@@ -3,55 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chguerr <chguerr@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: chguerre <chguerre@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 01:24:28 by chguerr           #+#    #+#             */
-/*   Updated: 2026/08/20 01:46:42 by chguerr          ###   ########.ch       */
+/*   Updated: 2026/08/20 12:29:26 by chguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int should_stop(t_philo *philo)
+int	should_stop(t_philo *philo)
 {
-    pthread_mutex_lock(&philo->data->death_mutex);
-		if(philo->data->someone_died)
-		{
-			pthread_mutex_unlock(&philo->data->death_mutex);
-			return 1;
-		}
-    pthread_mutex_unlock(&philo->data->death_mutex);
-    return (0);
+	pthread_mutex_lock(&philo->data->death_mutex);
+	if (philo->data->someone_died)
+	{
+		pthread_mutex_unlock(&philo->data->death_mutex);
+		return (1);
+	}
+	pthread_mutex_unlock(&philo->data->death_mutex);
+	return (0);
 }
 
-static int is_dead(t_philo *philo)
+static int	is_dead(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->last_meal_mutex);
-	if(current_time(philo) - philo->last_meal > philo->data->time_to_die)
-	{	
+	if (current_time(philo) - philo->last_meal > philo->data->time_to_die)
+	{
 		print_log(philo,"Has die!!...");
 		pthread_mutex_unlock(&philo->last_meal_mutex);
-	return (1);
+		return (1);
 	}
 	pthread_mutex_unlock(&philo->last_meal_mutex);
 	return (0);
 }
+
 void	*monitor(void *arg)
 {
-	t_philo *philo;
-	int i;
-	int one_die;
+	t_philo	*philo;
+	int		i;
+	int		one_die;
 
 	philo = arg;
-	while(1)
+	while (1)
 	{
-        usleep(1 * 1000);
+		usleep(10 * 1000);
 		i = 0;
-		while(i < philo->data->num_philos)
-		{	
+		while (i < philo->data->num_philos)
+		{
 			one_die = is_dead(&philo[i]);
-			if(one_die)
-				break;
+			if (one_die)
+				break ;
 			i++;
 		}
 		if (one_die)
@@ -59,8 +60,8 @@ void	*monitor(void *arg)
 			pthread_mutex_lock(&philo->data->death_mutex);
 			philo->data->someone_died = 1;
 			pthread_mutex_unlock(&philo->data->death_mutex);
-			break;
+			break ;
 		}
 	}
-	return NULL;
+	return (NULL);
 }

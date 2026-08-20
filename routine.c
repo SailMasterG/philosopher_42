@@ -6,7 +6,7 @@
 /*   By: chguerre <chguerre@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 12:16:44 by chguerre          #+#    #+#             */
-/*   Updated: 2026/08/20 12:16:47 by chguerre         ###   ########.fr       */
+/*   Updated: 2026/08/20 13:16:48 by chguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@ void	take_forks(t_philo *philo)
 	}
 	else
 	{
+		if (philo->data->num_philos == philo->id)
+		{
+			pthread_mutex_lock(philo->left_fork);
+			pthread_mutex_lock(philo->right_fork);
+			return ;
+		}
 		pthread_mutex_lock(philo->right_fork);
 		pthread_mutex_lock(philo->left_fork);
 	}
