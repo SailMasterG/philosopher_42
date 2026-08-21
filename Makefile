@@ -6,7 +6,13 @@ NAME = philo
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -pthread -fsanitize=address
 
-SRCS = main.c init.c routine.c utils.c  monitor.c validation.c
+SRCS = main.c \
+	init.c \
+	routine.c \
+	utils.c \
+	monitor.c \
+	validation.c \
+	ft_strtol.c
 OBJS = $(SRCS:%.c=%.o)
 
 all: $(NAME)

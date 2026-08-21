@@ -19,6 +19,9 @@
 # include <pthread.h>
 # include <sys/time.h>
 
+# define LONG_MIN -9223372036854775807
+# define LONG_MAX 9223372036854775806
+
 typedef struct s_data
 {
 	int				num_philos;
@@ -60,5 +63,6 @@ unsigned long long	get_time_ms(void);
 unsigned long long	current_time(t_philo *philo);
 void				print_log(t_philo *philo, char *message);
 int					validate_input(int argc, char **argv);
+long				ft_strtol(char *str, int *error);
 
 #endif

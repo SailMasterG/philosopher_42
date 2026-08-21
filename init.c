@@ -6,7 +6,7 @@
 /*   By: chguerre <chguerre@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 19:25:38 by chguerre          #+#    #+#             */
-/*   Updated: 2026/08/20 19:26:27 by chguerre         ###   ########.fr       */
+/*   Updated: 2026/08/21 19:56:40 by chguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,12 @@ int	ini_data(t_data *data, char **argv)
 {
 	int	num_philos;
 	int	i;
+	int error;
 
-	data->time_to_die = atoi(argv[2]);
-	data->time_to_eat = atoi(argv[3]);
-	data->time_to_sleep = atoi(argv[4]);
-	data->num_philos = atoi(argv[1]);
+	data->time_to_die = ft_strtol(argv[2],&error);
+	data->time_to_eat = ft_strtol(argv[3],&error);
+	data->time_to_sleep = ft_strtol(argv[4],&error);
+	data->num_philos = ft_strtol(argv[1],&error);
 	data->someone_died = 0;
 	data->start_time = get_time_ms();
 	num_philos = data->num_philos;
@@ -68,6 +69,8 @@ int	ini_data(t_data *data, char **argv)
 	}
 	pthread_mutex_init(&data->death_mutex, NULL);
 	pthread_mutex_init(&data->print_log, NULL);
+	if (error == 1)
+		return (0);
 	return (1);
 }
 
