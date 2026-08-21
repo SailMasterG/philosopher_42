@@ -6,7 +6,7 @@
 /*   By: chguerre <chguerre@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 19:11:27 by chguerre          #+#    #+#             */
-/*   Updated: 2026/08/21 19:50:35 by chguerre         ###   ########.fr       */
+/*   Updated: 2026/08/21 20:35:12 by chguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	validate_input(int argc, char **argv)
 	int			error;
 
 	i = 1;
+	error = 0;
 	while (i < argc)
 	{
 		number = ft_strtol(argv[i], &error);
