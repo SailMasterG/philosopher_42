@@ -6,7 +6,7 @@
 /*   By: chguerre <chguerre@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 01:24:28 by chguerr           #+#    #+#             */
-/*   Updated: 2026/08/20 16:34:02 by chguerre         ###   ########.fr       */
+/*   Updated: 2026/08/20 19:22:50 by chguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	is_dead(t_philo *philo)
 	pthread_mutex_lock(&philo->last_meal_mutex);
 	if (current_time(philo) - philo->last_meal > philo->data->time_to_die)
 	{
-		print_log(philo,"Has die!!...");
+		print_log(philo, "died");
 		pthread_mutex_unlock(&philo->last_meal_mutex);
 		return (1);
 	}
@@ -46,7 +46,6 @@ void	*monitor(void *arg)
 	philo = arg;
 	while (1)
 	{
-		ft_usleep(1,philo);
 		i = 0;
 		while (i < philo->data->num_philos)
 		{
@@ -62,6 +61,7 @@ void	*monitor(void *arg)
 			pthread_mutex_unlock(&philo->data->death_mutex);
 			break ;
 		}
+		ft_usleep(1, philo);
 	}
 	return (NULL);
 }

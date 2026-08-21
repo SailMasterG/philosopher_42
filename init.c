@@ -1,37 +1,48 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: chguerre <chguerre@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/20 19:25:38 by chguerre          #+#    #+#             */
+/*   Updated: 2026/08/20 19:26:27 by chguerre         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
-void join_threads(pthread_t *threads, t_philo *philo, pthread_t *dog_watch )
+void	join_threads(pthread_t *threads, t_philo *philo, pthread_t *dog_watch )
 {
-	int i;
+	int	i;
 
 	i = 0;
 	pthread_join(*dog_watch, NULL);
-	while(i < philo->data->num_philos)
+	while (i < philo->data->num_philos)
 	{
 		pthread_join(threads[i], NULL);
 		i++;
 	}
 }
 
-void *create_threads(t_philo *philo, int num_philos, pthread_t *dog_watch)
+void	*create_threads(t_philo *philo, int num_philos, pthread_t *dog_watch)
 {
 	pthread_t	*thread;
 	int			i;
 
 	thread = malloc(sizeof(pthread_t) * num_philos);
-	if(!thread)
+	if (!thread)
 	{
-		//creo que tengo que liberar todo data.fork y philos.
-		return NULL ;
+		return (NULL);
 	}
-	pthread_create(dog_watch, NULL,(void *)monitor, philo);
+	pthread_create(dog_watch, NULL, (void *)monitor, philo);
 	i = 0;
-	while(i < num_philos)
+	while (i < num_philos)
 	{
 		pthread_create(&thread[i], NULL, (void *)routine, &philo[i]);
 		i++;
 	}
-	return thread;
+	return (thread);
 }
 
 int	ini_data(t_data *data, char **argv)
@@ -47,8 +58,8 @@ int	ini_data(t_data *data, char **argv)
 	data->start_time = get_time_ms();
 	num_philos = data->num_philos;
 	data->forks = malloc(sizeof(pthread_mutex_t) * num_philos);
-	if(!data->forks)
-		return 0;
+	if (!data->forks)
+		return (0);
 	i = 0;
 	while (i < num_philos)
 	{
@@ -57,24 +68,25 @@ int	ini_data(t_data *data, char **argv)
 	}
 	pthread_mutex_init(&data->death_mutex, NULL);
 	pthread_mutex_init(&data->print_log, NULL);
-	return 1;
+	return (1);
 }
-
 
 void	*ini_philo(t_philo *philo, t_data *data)
 {
 	int	i;
-	int	num_philo = data->num_philos;
+	int	num_philo;
 
+	num_philo = data->num_philos;
 	philo = malloc(sizeof(t_philo) * data->num_philos);
 	if (!philo)
 		return (NULL);
 	i = 0;
-	while(i <num_philo)
+	while (i < num_philo)
 	{
 		philo[i].id = i + 1;
 		philo[i].right_fork = &data->forks[i];
-		philo[i].left_fork = &data->forks[(i - 1 + data->num_philos) % data->num_philos];
+		philo[i].left_fork = &data->forks[(i - 1 + data->num_philos)
+			% data->num_philos];
 		philo[i].last_meal = 0;
 		philo[i].data = data;
 		philo[i].times_eaten = 0;
@@ -82,7 +94,5 @@ void	*ini_philo(t_philo *philo, t_data *data)
 		pthread_mutex_init(&philo[i].last_meal_mutex, NULL);
 		i++;
 	}
-	return philo;
+	return (philo);
 }
-
-

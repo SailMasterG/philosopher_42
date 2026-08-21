@@ -22,11 +22,11 @@ int	main(int argc, char **argv)
 	if (argc < 4 || argc > 5)
 		return (1);
 	philo = NULL;
-	if(!ini_data(&data, argv))
+	if (!ini_data(&data, argv))
 		return (1);
 	philo = ini_philo(philo, &data);
-	if(!philo)
-		return 1;
+	if (!philo)
+		return (1);
 	threads = create_threads(philo, data.num_philos, &dog_watch);
 	join_threads(threads, philo, &dog_watch);
 	mutexes_destroy(philo, &data);
