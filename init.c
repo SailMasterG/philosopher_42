@@ -6,7 +6,7 @@
 /*   By: chguerre <chguerre@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 19:25:38 by chguerre          #+#    #+#             */
-/*   Updated: 2026/08/21 19:56:40 by chguerre         ###   ########.fr       */
+/*   Updated: 2026/08/21 21:04:33 by chguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,30 @@ void	*create_threads(t_philo *philo, int num_philos, pthread_t *dog_watch)
 	return (thread);
 }
 
-int	ini_data(t_data *data, char **argv)
+static int	parsing_arg(t_data *data, char **argv, int argc)
 {
-	int	num_philos;
-	int	i;
-	int error;
+	int	error;
 
+	error = 0;
 	data->time_to_die = ft_strtol(argv[2],&error);
 	data->time_to_eat = ft_strtol(argv[3],&error);
 	data->time_to_sleep = ft_strtol(argv[4],&error);
 	data->num_philos = ft_strtol(argv[1],&error);
+	if (argc == 6)
+		data->num_times_to_eats = ft_strtol(argv[5],&error);
+	else
+		data->num_times_to_eats = 0;
+	if (error == 1)
+		return (0);
+	return (1);
+}
+
+int	ini_data(t_data *data, char **argv, int argc)
+{
+	int	num_philos;
+	int	i;
+	if(!parsing_arg(data, argv, argc))
+		return(0);
 	data->someone_died = 0;
 	data->start_time = get_time_ms();
 	num_philos = data->num_philos;
@@ -69,8 +83,7 @@ int	ini_data(t_data *data, char **argv)
 	}
 	pthread_mutex_init(&data->death_mutex, NULL);
 	pthread_mutex_init(&data->print_log, NULL);
-	if (error == 1)
-		return (0);
+
 	return (1);
 }
 

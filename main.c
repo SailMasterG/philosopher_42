@@ -19,12 +19,12 @@ int	main(int argc, char **argv)
 	pthread_t	dog_watch;
 	pthread_t	*threads;
 
-	if (argc <= 4 || argc > 5)
+	if (argc < 5 || argc > 6)
 		return (1);
 	if (!validate_input(argc, argv))
 		return (1);
 	philo = NULL;
-	if (!ini_data(&data, argv))
+	if (!ini_data(&data, argv, argc))
 		return (1);
 	philo = ini_philo(philo, &data);
 	if (!philo)

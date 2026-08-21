@@ -48,7 +48,7 @@ typedef struct s_philo
 	t_data			*data;
 }					t_philo;
 
-int					ini_data(t_data *data, char **argv);
+int					ini_data(t_data *data, char **argv, int argc);
 int					should_stop(t_philo *philo);
 void				*ini_philo(t_philo *philo, t_data *data);
 void				*create_threads(t_philo *philo, int num_philos,

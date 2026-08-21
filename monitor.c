@@ -6,7 +6,7 @@
 /*   By: chguerre <chguerre@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 01:24:28 by chguerr           #+#    #+#             */
-/*   Updated: 2026/08/21 18:41:19 by chguerre         ###   ########.fr       */
+/*   Updated: 2026/08/21 22:13:34 by chguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	should_stop(t_philo *philo)
 {
+
 	pthread_mutex_lock(&philo->data->death_mutex);
 	if (philo->data->someone_died)
 	{
@@ -31,9 +32,31 @@ static int	is_dead(t_philo *philo)
 	{
 		print_log(philo, "died");
 		pthread_mutex_unlock(&philo->last_meal_mutex);
+		pthread_mutex_lock(&philo->data->death_mutex);
+		philo->data->someone_died = 1;
+		pthread_mutex_unlock(&philo->data->death_mutex);
 		return (1);
 	}
 	pthread_mutex_unlock(&philo->last_meal_mutex);
+	return (0);
+}
+
+int	all_ate_enough(t_philo *philo)
+{
+	int	i;
+	int	eat_enough;
+
+	i = 0;
+	eat_enough = 0;
+	while (i < philo->data->num_philos)
+	{
+		if (philo[i].times_eaten >= philo[i].data->num_times_to_eats)
+			eat_enough++;
+		i++;
+	}
+	if (eat_enough == philo->data->num_times_to_eats)
+		return (1);
+
 	return (0);
 }
 
@@ -46,8 +69,10 @@ void	*monitor(void *arg)
 	philo = arg;
 	while (1)
 	{
-		ft_usleep(0.1, philo);
+		ft_usleep(1, philo);
 		i = 0;
+		if (philo->data->num_times_to_eats > 0 && all_ate_enough(philo))
+			break ;
 		while (i < philo->data->num_philos)
 		{
 			one_die = is_dead(&philo[i]);
@@ -56,12 +81,7 @@ void	*monitor(void *arg)
 			i++;
 		}
 		if (one_die)
-		{
-			pthread_mutex_lock(&philo->data->death_mutex);
-			philo->data->someone_died = 1;
-			pthread_mutex_unlock(&philo->data->death_mutex);
 			break ;
-		}
 	}
 	return (NULL);
 }
