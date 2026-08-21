@@ -6,19 +6,24 @@
 /*   By: chguerre <chguerre@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 19:20:50 by chguerre          #+#    #+#             */
-/*   Updated: 2026/08/21 19:30:39 by chguerre         ###   ########.fr       */
+/*   Updated: 2026/08/21 20:31:49 by chguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	parsing_long(char *str, int *i, long *result)
+static int	parsing_long(char *str, int *i, long *result)
 {
 	while (str[*i] >= '0' && str[*i] <= '9')
 	{
+		if (*result > LONG_MAX / 10)
+			return (0);
+		if (*result == LONG_MAX / 10 && (str[*i] - '0') > LONG_MAX % 10)
+			return (0);
 		*result = *result * 10 + (str[*i] - '0');
 		(*i)++;
 	}
+	return (1);
 }
 
 long	ft_strtol(char *str, int *error)
@@ -42,7 +47,8 @@ long	ft_strtol(char *str, int *error)
 	}
 	if (!(str[i] >= '0' && str[i] <= '9'))
 		return (*error = 1);
-	parsing_long(str, &i, &nbr_long);
+	if (!parsing_long(str, &i, &nbr_long))
+		return (*error = 1);
 	nbr_long *= sign;
 	if (str[i] != '\0' || (nbr_long < LONG_MIN || nbr_long > LONG_MAX))
 		return (*error = 1);
