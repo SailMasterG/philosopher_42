@@ -59,5 +59,6 @@ void				*monitor(void *arg);
 unsigned long long	get_time_ms(void);
 unsigned long long	current_time(t_philo *philo);
 void				print_log(t_philo *philo, char *message);
+int					validate_input(int argc, char **argv);
 
 #endif

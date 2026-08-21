@@ -6,7 +6,7 @@
 /*   By: chguerre <chguerre@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 01:24:28 by chguerr           #+#    #+#             */
-/*   Updated: 2026/08/20 19:22:50 by chguerre         ###   ########.fr       */
+/*   Updated: 2026/08/21 18:41:19 by chguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	*monitor(void *arg)
 	philo = arg;
 	while (1)
 	{
+		ft_usleep(0.1, philo);
 		i = 0;
 		while (i < philo->data->num_philos)
 		{
@@ -61,7 +62,6 @@ void	*monitor(void *arg)
 			pthread_mutex_unlock(&philo->data->death_mutex);
 			break ;
 		}
-		ft_usleep(1, philo);
 	}
 	return (NULL);
 }

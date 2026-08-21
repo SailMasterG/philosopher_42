@@ -19,7 +19,9 @@ int	main(int argc, char **argv)
 	pthread_t	dog_watch;
 	pthread_t	*threads;
 
-	if (argc < 4 || argc > 5)
+	if (argc <= 4 || argc > 5)
+		return (1);
+	if (!validate_input(argc, argv))
 		return (1);
 	philo = NULL;
 	if (!ini_data(&data, argv))
