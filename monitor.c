@@ -6,7 +6,7 @@
 /*   By: chguerre <chguerre@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 01:24:28 by chguerr           #+#    #+#             */
-/*   Updated: 2026/08/21 22:20:45 by chguerre         ###   ########.fr       */
+/*   Updated: 2026/08/22 15:34:10 by chguerre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	should_stop(t_philo *philo)
 {
-
 	pthread_mutex_lock(&philo->data->death_mutex);
 	if (philo->data->someone_died)
 	{

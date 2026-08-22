@@ -4,7 +4,7 @@ RESET = \033[0m
 NAME = philo
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -pthread -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -pthread
 
 SRCS = main.c \
 	init.c \
